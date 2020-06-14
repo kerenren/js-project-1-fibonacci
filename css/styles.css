@@ -1,0 +1,26 @@
+.page-wrapper {
+  margin: 6.25rem 10.25rem 0 10.25rem;
+}
+.calc {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  font-size: 4.5rem;
+  line-height: 4.9375rem;
+  margin-bottom: 3.125rem;
+}
+
+button {
+  background-color: #0275d8 !important;
+  font-size: 16px;
+}
+
+input {
+  width: 10%;
+}

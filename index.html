@@ -3,14 +3,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Kelei_Fibonachi calculator_mile_stone_2</title>
+    <title>Kelei_Fibonachi calculator_mile_stone_3</title>
     <meta name="description" content="Fibonachi" />
     <meta name="author" content="Kelei" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
 
-  <body>
-    <p>The Fibonachi of <span id="numX"></span> is <span id="numY"></span></p>
+  <body class="w-100">
+    <div class="page-wrapper">
+      <h1>Fibonachi Calculator</h1>
+      <div class="calc d-flex align-items-center justify-content-start w-100">
+          <span class="mr-3">The Fibonachi of</span> 
+          <input class="mr-4 py-1 pl-3" type="number" name="number" id="numX" placeholder="#" min="0"></input>
+          <button id="calculate" type="button" class="btn btn-primary mr-3"min="0" >Is</button>
+          <u id="numY"></u>  
+      </div>
+  </div>
     <script src="./js/scripts.js"></script>
   </body>
 </html>
