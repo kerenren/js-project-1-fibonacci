@@ -1,23 +1,21 @@
 let loader = document.getElementById("loader");
 let errorBox = document.getElementById("error");
 let calBtn = document.getElementById("calculate");
-
 function present(selector) {
   selector.classList.remove("d-none");
 }
-
 function unpresent(selector) {
   selector.classList.add("d-none");
 }
-
 function getButton() {
   let number = document.getElementById("numX");
   let yOutPut = document.getElementById("numY");
   let itcServer = "http://localhost:5050/fibonacci/" + number.value;
-  
+
   function highlightError() {
     number.classList.add("error-input");
     present(errorBox);
+    yOutPut.innerText = "";
   }
 
   function removeError() {
@@ -25,6 +23,7 @@ function getButton() {
   }
 
   if (parseInt(number.value) >= 50) {
+    present(errorBox);
     highlightError();
     errorBox.innerText = "400 (Bad Request)";
   } else {
@@ -34,6 +33,7 @@ function getButton() {
       .then(function (response) {
         if (response.ok === false || response.status !== 200) {
           errorBox.innerText = response.statusText;
+          present(errorBox);
           highlightError();
           unpresent(loader);
         } else {
@@ -49,5 +49,4 @@ function getButton() {
       });
   }
 }
-
 calBtn.addEventListener("click", getButton);
