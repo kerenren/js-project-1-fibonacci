@@ -13,14 +13,21 @@
   </head>
 
   <body class="w-100">
-    <div class="page-wrapper">
+    <div class="page-wrapper position-relative">
       <h1>Fibonacci Calculator</h1>
-      <div class="calc d-flex align-items-center justify-content-start w-100">
-          <span class="mr-3">The Fibonachi of</span> 
-          <input class="mr-4 py-1 pl-3" type="number" name="number" id="numX" placeholder="#" min="0"></input>
-          <button id="calculate" type="button" class="btn btn-primary mr-3"min="0" >Is</button>
-          <u id="numY"></u>  
+      <div class="calc d-flex align-items-center justify-content-start position-absolute">
+        <span class="mr-3 sub">The Fibonachi of</span> 
+        <input class="mr-4 py-1 pl-3 error-input number" type="number" name="number" id="numX" placeholder="#" min="0"></input>
+        <button id="calculate" type="button" class="btn btn-primary mr-3"min="0" >Is</button>
+        <u id="numY"></u>  
+        <div class="spinner-border loader d-none" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
+      <div class="pl-5 ml-5 position-relative">
+      <p class="error rounded-lg mt-3 ml-3 position-absolute mt-5 d-none" id="error">Error</p>
+     </div>
+    </div>
   </div>
     <script src="./js/scripts.js"></script>
   </body>

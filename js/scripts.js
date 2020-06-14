@@ -1,5 +1,6 @@
 let loader = document.getElementById("loader");
 let errorBox = document.getElementById("error");
+let calBtn = document.getElementById("calculate");
 
 function present(selector) {
   selector.classList.remove("d-none");
@@ -19,10 +20,8 @@ function getButton() {
     errorBox.innerText = "400 (Bad Request)";
   } else {
     present(loader);
-    // selfnote for debug: console.log("loader is presented");
     fetch(itcServer)
       .then(function (response) {
-        // console.log(response);
         if (response.ok === false || response.status !== 200) {
           errorBox.innerText = response.statusText;
           present(errorBox);
@@ -33,14 +32,10 @@ function getButton() {
         return response.json();
       })
       .then(function (data) {
-        // console.log(data);
         yOutPut.innerText = data.result;
         unpresent(loader);
-        // selfnote for debug: console.log("loader is unpresented");
       });
   }
 }
 
-//get button callback getButton function once firing the click event
-let calBtn = document.getElementById("calculate");
 calBtn.addEventListener("click", getButton);

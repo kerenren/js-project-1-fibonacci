@@ -4,16 +4,56 @@
 .calc {
   font-size: 1.5rem;
   line-height: 1.5rem;
+  width: 511px;
+}
+
+.hide {
+  /* display: none; */
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+}
+.error {
+  color: #a94442;
+  background: #f2dede;
+  border: 1px solid #ebcccc;
+  width: 180px;
+  height: 33px;
+}
+
+.error-input {
+  border: 1px solid #d9534f;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: #d9534f;
+}
+.number {
+  width: 86px;
+  height: 38px;
+}
+
+.sub {
+  width: 189px;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
+  color: #373a3c;
 }
 
 h1 {
   font-size: 4.5rem;
   line-height: 4.9375rem;
   margin-bottom: 3.125rem;
+  width: 672px;
+  height: 79px;
+}
+
+h2 {
+  font-size: 54px;
+  line-height: 72px;
 }
 
 button {
