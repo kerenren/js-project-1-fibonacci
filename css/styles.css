@@ -4,11 +4,6 @@
 .calc {
   font-size: 1.5rem;
   line-height: 1.5rem;
-  width: 511px;
-}
-
-.hide {
-  /* display: none; */
 }
 
 .loader {
@@ -29,6 +24,14 @@
   border-radius: 4px;
   color: #d9534f;
 }
+
+.error-msg {
+  font-size: 16px;
+  line-height: 24px;
+  width: 300px;
+  color: #d9534f;
+}
+
 .number {
   width: 86px;
   height: 38px;

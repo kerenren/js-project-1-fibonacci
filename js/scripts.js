@@ -44,10 +44,8 @@
       present(loader);
       fetch(itcServer)
         .then(function (response) {
-          // console.log(response);
           if (!response.ok) {
             handleError();
-            // console.log(response.text());
             return response.text();
           } else {
             number.classList.remove("error-input");
@@ -55,7 +53,6 @@
           }
         })
         .then(function (data) {
-          // console.log(data);
           if (typeof data === "string") {
             errorMsg.innerText = data;
           } else {
