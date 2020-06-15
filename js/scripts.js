@@ -1,52 +1,70 @@
-let loader = document.getElementById("loader");
-let errorBox = document.getElementById("error");
-let calBtn = document.getElementById("calculate");
-function present(selector) {
-  selector.classList.remove("d-none");
-}
-function unpresent(selector) {
-  selector.classList.add("d-none");
-}
-function getButton() {
-  let number = document.getElementById("numX");
-  let yOutPut = document.getElementById("numY");
-  let itcServer = "http://localhost:5050/fibonacci/" + number.value;
+(() => {
+  let loader = document.getElementById("loader");
+  let errorBox = document.getElementById("error");
+  let calBtn = document.getElementById("calculate");
+  let errorMsg = document.getElementById("error-msg");
 
-  function highlightError() {
-    number.classList.add("error-input");
-    present(errorBox);
-    yOutPut.innerText = "";
+  function present(selector) {
+    selector.classList.remove("d-none");
+  }
+  function unpresent(selector) {
+    selector.classList.add("d-none");
   }
 
-  function removeError() {
-    number.classList.remove("error-input");
-  }
+  function calcButton() {
+    let number = document.getElementById("inputNum");
+    let yOutPut = document.getElementById("resultNum");
+    let itcServer = "http://localhost:5050/fibonacci/" + number.value;
 
-  if (parseInt(number.value) >= 50) {
-    present(errorBox);
-    highlightError();
-    errorBox.innerText = "400 (Bad Request)";
-  } else {
-    present(loader);
+    function highlightError() {
+      number.classList.add("error-input");
+      present(errorBox);
+      yOutPut.innerText = "";
+    }
+
+    function removeError() {
+      number.classList.remove("error-input");
+      unpresent(errorMsg);
+      unpresent(errorBox);
+    }
+
+    function handleError() {
+      highlightError();
+      present(errorMsg);
+      unpresent(errorBox);
+      unpresent(loader);
+    }
+
     removeError();
-    fetch(itcServer)
-      .then(function (response) {
-        if (response.ok === false || response.status !== 200) {
-          errorBox.innerText = response.statusText;
-          present(errorBox);
-          highlightError();
+
+    if (parseInt(number.value) > 50) {
+      highlightError();
+      errorBox.innerText = "Can't be larger than 50";
+    } else {
+      present(loader);
+      fetch(itcServer)
+        .then(function (response) {
+          // console.log(response);
+          if (!response.ok) {
+            handleError();
+            // console.log(response.text());
+            return response.text();
+          } else {
+            number.classList.remove("error-input");
+            return response.json();
+          }
+        })
+        .then(function (data) {
+          // console.log(data);
+          if (typeof data === "string") {
+            errorMsg.innerText = data;
+          } else {
+            yOutPut.innerText = data.result;
+          }
           unpresent(loader);
-        } else {
-          unpresent(errorBox);
-          removeError();
-          number.classList.remove("error-input");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        yOutPut.innerText = data.result;
-        unpresent(loader);
-      });
+        });
+    }
   }
-}
-calBtn.addEventListener("click", getButton);
+
+  calBtn.addEventListener("click", calcButton);
+})();
