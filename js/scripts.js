@@ -32,7 +32,6 @@
           console.log(resultObj);
           for (let i = 0; i < resultObj.length; i++) {
             let arrayFib = resultObj[i];
-            let calDate = new Date();
             let li = document.createElement("li");
             li.classList.add(
               "border-bottom",
@@ -41,7 +40,9 @@
               "d-inline-block",
               "pb-3"
             );
-            li.innerHTML = `The Fibonacci of <b>${arrayFib.number}</b> is <b>${arrayFib.result}</b>. Calculated at ${calDate}`;
+            li.innerHTML = `The Fibonacci of <b>${arrayFib.number}</b> is <b>${
+              arrayFib.result
+            }</b>. Calculated at ${new Date(arrayFib.createdDate)}`;
             result.prepend(li);
           }
           return resultObj;
