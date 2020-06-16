@@ -41,6 +41,10 @@
   width: 189px;
 }
 
+.result {
+  margin-top: 160px;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #373a3c;
