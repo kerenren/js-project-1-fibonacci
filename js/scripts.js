@@ -21,7 +21,7 @@
     let itcServer = "http://localhost:5050/fibonacci/" + numberFib.value;
     let newResult = {
       text: numberFib.value,
-      dateCreated: Date.now(),
+      dateCreated: new Date(),
     };
 
     function pushList(inputNumber, calResult, calTime) {
