@@ -24,6 +24,18 @@
       dateCreated: Date.now(),
     };
 
+    function pushList(inputNumber, calResult, calTime) {
+      let li = document.createElement("li");
+      li.classList.add(
+        "border-bottom",
+        "mb-3",
+        "border-dark",
+        "d-inline-block",
+        "pb-3"
+      );
+      li.innerHTML = `The Fibonacci of <b>${inputNumber}</b> is <b>${calResult}</b>. Calculated at ${calTime}`;
+      result.prepend(li);
+    }
     function loadResults() {
       fetch(loadURL)
         .then((response) => response.json())
@@ -32,18 +44,11 @@
           console.log(resultObj);
           for (let i = 0; i < resultObj.length; i++) {
             let arrayFib = resultObj[i];
-            let li = document.createElement("li");
-            li.classList.add(
-              "border-bottom",
-              "mb-3",
-              "border-dark",
-              "d-inline-block",
-              "pb-3"
+            pushList(
+              arrayFib.number,
+              arrayFib.result,
+              new Date(arrayFib.createdDate)
             );
-            li.innerHTML = `The Fibonacci of <b>${arrayFib.number}</b> is <b>${
-              arrayFib.result
-            }</b>. Calculated at ${new Date(arrayFib.createdDate)}`;
-            result.prepend(li);
           }
           return resultObj;
         });
@@ -51,17 +56,23 @@
 
     loadResults();
 
-    fetch(loadURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/JSON",
-      },
-      body: JSON.stringify(newResult),
-    }).then((response) => {
-      if (response.ok) {
-        loadResults();
-      }
-    });
+    // function pushResult() {
+    //   fetch(loadURL, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(newResult),
+    //   }).then((response) => {
+    //     if (response.ok) {
+    //       console.log(response);
+    //     } else {
+    //       console.log(response, "post is not wroking");
+    //     }
+    //   });
+    // }
+
+    // pushResult();
 
     function highlightError() {
       numberFib.classList.add("error-input");
@@ -117,6 +128,7 @@
           } else {
             // console.log(data);
             yOutPut.innerText = data.result;
+            pushList(newResult.text, data.result, newResult.dateCreated);
           }
           unpresentLoader();
         });
