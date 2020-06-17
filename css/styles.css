@@ -45,6 +45,14 @@
   margin-top: 160px;
 }
 
+input.save-calc {
+  width: 14px;
+}
+
+.save-calc {
+  font-size: 12px;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #373a3c;
