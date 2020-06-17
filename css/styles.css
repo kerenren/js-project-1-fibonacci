@@ -79,3 +79,10 @@ button {
 input {
   width: 10%;
 }
+
+select {
+  background: #e6e6e6;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 4px;
+}

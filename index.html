@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Kelei_Fibonacci calculator_mile_stone_6</title>
+    <title>Kelei_Fibonacci calculator_mile_stone_7</title>
     <meta name="description" content="Fibonacci" />
     <meta name="author" content="Kelei" />
     <link
@@ -75,14 +75,30 @@
           Save Calculation
         </label>
       </div>
+
       <div class="result d-flex flex-column w-100">
         <div class="d-flex align-items-center">
           <h2 class="d-inline-block mr-3">Result</h2>
           <div class="spinner-border d-none" id="loader2" role="status"></div>
         </div>
+        <div class="sort w-100">
+          <select
+            name="selectSort"
+            id="selectSort"
+            class="w-10 btn btn-secondary bg-light text-dark"
+          >
+            <option selected value="sort" class="text-dark">Sort by</option>
+            <option value="numAsc" class="text-dark">Number Asc</option>
+            <option value="numDesc" class="text-dark">Number Desc</option>
+            <option value="dateAsc" class="text-dark">Date Asc</option>
+            <option value="dateDesc" class="text-dark">Date Desc</option>
+          </select>
+        </div>
+
         <ul class="d-block list-unstyled result-container" id="result"></ul>
       </div>
     </div>
+
     <script src="./js/scripts.js"></script>
   </body>
 </html>

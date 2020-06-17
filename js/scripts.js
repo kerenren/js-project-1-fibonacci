@@ -1,4 +1,6 @@
 (() => {
+  //TL;DR to do: 1. fix the select latency issue in Chrom (the select behavior in FireFox is good) 2.add local calc number conditions 3. select button design  4. clean codes 5. add async/await codes 6. resolve questions in comments
+
   let loader = document.getElementById("loader");
   let loader2 = document.getElementById("loader2");
   let errorBox = document.getElementById("error");
@@ -9,6 +11,12 @@
   let numberFib = document.getElementById("inputNum");
   let yOutPut = document.getElementById("resultNum");
   let saveResult = document.getElementById("defaultCheck1");
+  let selectSort = document.getElementById("selectSort");
+  // let sortedByValue = selectSort.options[selectSort.selectedIndex].text;
+  // let numAsc = document.getElementById("numAsc");
+  // let numDesc = document.getElementById("numDesc");
+  // let dateAsc = document.getElementById("dateAsc");
+  // let dateDesc = document.getElementById("dateDesc");
 
   function present(selector) {
     selector.classList.remove("d-none");
@@ -27,24 +35,63 @@
       "d-inline-block",
       "pb-3"
     );
+    // li.setAttribute("id", "resultList");
     li.innerHTML = `The Fibonacci of <b>${inputNumber}</b> is <b>${calResult}</b>. Calculated at ${calTime}`;
     result.prepend(li);
+  }
+
+  function sortType() {
+    selectSort.addEventListener("click", () => {
+      // console.log("selectSort value is:", selectSort.value);
+      fetch(loadURL)
+        .then((response) => response.json())
+        .then((data) => {
+          let list = data.results;
+          sortResults(selectSort.value, list);
+          // console.log(list);
+          addResults(list);
+          return list;
+        });
+    });
+  }
+
+  function sortResults(sortedByValue, array) {
+    switch (sortedByValue) {
+      case "numAsc":
+        array.sort((a, b) => (a.number < b.number ? 1 : -1));
+        break;
+      case "numDesc":
+        array.sort((a, b) => (a.number > b.number ? 1 : -1));
+        break;
+      case "dateAsc":
+        array.sort((a, b) => (a.createdDate < b.createdDate ? 1 : -1));
+        break;
+      case "dateDesc":
+        array.sort((a, b) => (a.createdDate > b.createdDate ? 1 : -1));
+        break;
+      default:
+        console.log("the sort type is required");
+    }
+  }
+
+  function addResults(array) {
+    for (let i = 0; i < array.length; i++) {
+      let arrayFib = array[i];
+      pushList(
+        arrayFib.number,
+        arrayFib.result,
+        new Date(arrayFib.createdDate)
+      );
+    }
   }
 
   function loadResults() {
     fetch(loadURL)
       .then((response) => response.json())
       .then((data) => {
-        let resultObj = data.results;
-        for (let i = 0; i < resultObj.length; i++) {
-          let arrayFib = resultObj[i];
-          pushList(
-            arrayFib.number,
-            arrayFib.result,
-            new Date(arrayFib.createdDate)
-          );
-        }
-        return resultObj;
+        let resultArray = data.results;
+        addResults(resultArray);
+        return resultArray;
       });
   }
 
@@ -159,6 +206,7 @@
   }
 
   loadResults();
+  sortType();
   function calcButton() {
     removeError(); //? why removedError() function can not be placed after the fetch bellow
     isChecked();
@@ -167,3 +215,11 @@
 
   calBtn.addEventListener("click", calcButton);
 })();
+
+//to check: why the resultList is null?
+// let resultList = document.getElementById("resultList");
+// console.log(result);
+// console.log(typeof result);
+// console.log(resultList);
+// console.log(typeof resultList);
+// console.log(resultList.innerHTML);
