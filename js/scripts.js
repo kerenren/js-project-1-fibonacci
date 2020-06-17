@@ -8,6 +8,7 @@
   let loadURL = "http://localhost:5050/getFibonacciResults";
   let numberFib = document.getElementById("inputNum");
   let yOutPut = document.getElementById("resultNum");
+  let saveResult = document.getElementById("defaultCheck1");
 
   function present(selector) {
     selector.classList.remove("d-none");
@@ -35,7 +36,6 @@
       .then((response) => response.json())
       .then((data) => {
         let resultObj = data.results;
-        console.log(resultObj);
         for (let i = 0; i < resultObj.length; i++) {
           let arrayFib = resultObj[i];
           pushList(
@@ -114,10 +114,55 @@
     }
   }
 
+  // function fibonacciCalc(num) {
+  //   let resultNum = 0;
+  //   if (num === 0) {
+  //     return 0;
+  //   } else if (num === 1) {
+  //     return 1;
+  //   } else if (num > 1) {
+  //     resultNum = fibonacciCalc(num - 1) + fibonacciCalc(num - 2);
+  //     return resultNum;
+  //   } else if (num === 42) {
+  //     errorMsg.innerText = "42 is the meaning of life";
+  //     handleError();
+  //   } else if (num > 50) {
+  //     highlightError();
+  //     errorBox.innerText = "Can't be larger than 50";
+  //   } else {
+  //     console.log(resultNum);
+  //     return "out of scope";
+  //   }
+  // }
+
+  function fibonacciCalc(x) {
+    let y;
+    console.log("type of input is", typeof x);
+    if (x == 0) {
+      return 0;
+    } else if (x == 1) {
+      return 1;
+    } else {
+      y = fibonacciCalc(x - 1) + fibonacciCalc(x - 2);
+      return y;
+    }
+  }
+
+  function isChecked() {
+    if (saveResult.checked) {
+      calServer();
+    } else {
+      fibonacciCalc(parseInt(numberFib.value));
+      yOutPut.innerText = fibonacciCalc(numberFib.value);
+      pushList(numberFib.value, yOutPut.innerText, new Date());
+    }
+  }
+
+  loadResults();
   function calcButton() {
     removeError(); //? why removedError() function can not be placed after the fetch bellow
-    loadResults();
-    calServer();
+    isChecked();
+    // calServer();
   }
 
   calBtn.addEventListener("click", calcButton);
