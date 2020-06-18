@@ -12,11 +12,6 @@
   let yOutPut = document.getElementById("resultNum");
   let saveResult = document.getElementById("defaultCheck1");
   let selectSort = document.getElementById("selectSort");
-  // let sortedByValue = selectSort.options[selectSort.selectedIndex].text;
-  // let numAsc = document.getElementById("numAsc");
-  // let numDesc = document.getElementById("numDesc");
-  // let dateAsc = document.getElementById("dateAsc");
-  // let dateDesc = document.getElementById("dateDesc");
 
   function present(selector) {
     selector.classList.remove("d-none");
@@ -28,14 +23,7 @@
 
   function pushList(inputNumber, calResult, calTime) {
     let li = document.createElement("li");
-    li.classList.add(
-      "border-bottom",
-      "mb-3",
-      "border-dark",
-      "d-inline-block",
-      "pb-3"
-    );
-    // li.setAttribute("id", "resultList");
+    li.classList.add("border-bottom", "mb-3", "border-dark", "d-block", "pb-3");
     li.innerHTML = `The Fibonacci of <b>${inputNumber}</b> is <b>${calResult}</b>. Calculated at ${calTime}`;
     result.prepend(li);
   }
@@ -55,8 +43,8 @@
     });
   }
 
-  function sortResults(sortedByValue, array) {
-    switch (sortedByValue) {
+  function sortResults(sortValue, array) {
+    switch (sortValue) {
       case "numAsc":
         array.sort((a, b) => (a.number < b.number ? 1 : -1));
         break;
