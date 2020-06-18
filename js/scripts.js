@@ -28,19 +28,17 @@
     result.prepend(li);
   }
 
+  async function handleSortMethod() {
+    const response = await fetch(loadURL);
+    const data = await response.json();
+    let list = data.results;
+    sortResults(selectSort.value, list);
+    addResults(list);
+    return list;
+  }
+
   function sortType() {
-    selectSort.addEventListener("click", () => {
-      // console.log("selectSort value is:", selectSort.value);
-      fetch(loadURL)
-        .then((response) => response.json())
-        .then((data) => {
-          let list = data.results;
-          sortResults(selectSort.value, list);
-          // console.log(list);
-          addResults(list);
-          return list;
-        });
-    });
+    selectSort.addEventListener("click", handleSortMethod);
   }
 
   function sortResults(sortValue, array) {
@@ -73,14 +71,16 @@
     }
   }
 
+  async function handleResultData() {
+    const response = await fetch(loadURL);
+    const data = await response.json();
+    let resultArray = data.results;
+    addResults(resultArray);
+    return resultArray;
+  }
+
   function loadResults() {
-    fetch(loadURL)
-      .then((response) => response.json())
-      .then((data) => {
-        let resultArray = data.results;
-        addResults(resultArray);
-        return resultArray;
-      });
+    handleResultData();
   }
 
   function highlightError() {
@@ -119,6 +119,25 @@
       text: numberFib.value,
       dateCreated: new Date(),
     };
+    async function calcByItcServer() {
+      const response = await fetch(itcServer);
+      if (!response.ok) {
+        handleError();
+        return response.text();
+      } else {
+        numberFib.classList.remove("error-input");
+      }
+      const data = await response.json();
+      if (typeof data === "string") {
+        errorMsg.innerText = data;
+      } else {
+        // console.log(data);
+        yOutPut.innerText = data.result;
+        pushList(newResult.text, data.result, newResult.dateCreated);
+      }
+      unpresentLoader();
+    }
+
     if (parseInt(numberFib.value) > 50) {
       highlightError();
       errorBox.innerText = "Can't be larger than 50";
@@ -126,26 +145,7 @@
       yOutPut.innerText = "";
     } else {
       presentLoader();
-      fetch(itcServer)
-        .then(function (response) {
-          if (!response.ok) {
-            handleError();
-            return response.text();
-          } else {
-            numberFib.classList.remove("error-input");
-            return response.json();
-          }
-        })
-        .then(function (data) {
-          if (typeof data === "string") {
-            errorMsg.innerText = data;
-          } else {
-            // console.log(data);
-            yOutPut.innerText = data.result;
-            pushList(newResult.text, data.result, newResult.dateCreated);
-          }
-          unpresentLoader();
-        });
+      calcByItcServer();
     }
   }
 
