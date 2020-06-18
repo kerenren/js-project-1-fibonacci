@@ -1,5 +1,5 @@
 (() => {
-  //TL;DR to do: 1. fix the select latency issue in Chrom (the select behavior in FireFox is good) 2.add local calc number conditions 3. select button design  4. clean codes 5. add async/await codes 6. resolve questions in comments
+  //TL;DR to do: 1. fix the select latency issue in Chrome (the select behavior in FireFox is good) 2.add local calc number conditions 3. select button design  4. clean codes with the variable storage method  5. resolve questions in comments 6. resolve the Response.json() Boday has already been consumed error in number 42 case(server calc)
 
   let loader = document.getElementById("loader");
   let loader2 = document.getElementById("loader2");
@@ -119,11 +119,13 @@
       text: numberFib.value,
       dateCreated: new Date(),
     };
+
     async function calcByItcServer() {
       const response = await fetch(itcServer);
       if (!response.ok) {
         handleError();
-        return response.text();
+        const responseText = await response.text();
+        errorMsg.innerText = responseText;
       } else {
         numberFib.classList.remove("error-input");
       }
@@ -131,7 +133,6 @@
       if (typeof data === "string") {
         errorMsg.innerText = data;
       } else {
-        // console.log(data);
         yOutPut.innerText = data.result;
         pushList(newResult.text, data.result, newResult.dateCreated);
       }
@@ -145,6 +146,7 @@
       yOutPut.innerText = "";
     } else {
       presentLoader();
+      yOutPut.innerText = "";
       calcByItcServer();
     }
   }
@@ -195,10 +197,10 @@
 
   loadResults();
   sortType();
+
   function calcButton() {
     removeError(); //? why removedError() function can not be placed after the fetch bellow
     isChecked();
-    // calServer();
   }
 
   calBtn.addEventListener("click", calcButton);
