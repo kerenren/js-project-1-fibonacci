@@ -1,5 +1,3 @@
-//TL;DR  1. fixed the select latency issue in Chrome (the select behavior in FireFox is good) 2.added local calc number conditions 3. select button design  4. cleaned codes with the variable storage method  5. resolved questions in comments 6. resolved the Response.json() Boday has already been consumed error
-
 let loader = document.getElementById("loader");
 let loader2 = document.getElementById("loader2");
 let errorBox = document.getElementById("error");
