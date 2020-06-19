@@ -77,21 +77,43 @@
       </div>
 
       <div class="result d-flex flex-column">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center mb-3">
           <h2 class="d-inline-block mr-3">Result</h2>
           <div class="spinner-border d-none" id="loader2" role="status"></div>
         </div>
-        <div class="sort w-100">
+        <div class="sort w-100 mt-1 mb-4 pb-3">
           <select
             name="selectSort"
             id="selectSort"
-            class="w-10 btn btn-secondary bg-light text-dark"
+            class="w-10 text-dark rounded px-2 py-1"
           >
-            <option selected value="sort" class="text-dark">Sort by</option>
-            <option value="numAsc" class="text-dark">Number Asc</option>
-            <option value="numDesc" class="text-dark">Number Desc</option>
-            <option value="dateAsc" class="text-dark">Date Asc</option>
-            <option value="dateDesc" class="text-dark">Date Desc</option>
+            <option
+              selected
+              value="sort"
+              class="text-dark bg-light rounded btn-outline-secondary"
+            >
+              Sort by
+            </option>
+            <option
+              value="numAsc"
+              class="text-dark bg-light rounded btn-outline-secondary"
+              >Number Asc</option
+            >
+            <option
+              value="numDesc"
+              class="text-dark bg-light rounded btn-outline-secondary"
+              >Number Desc</option
+            >
+            <option
+              value="dateAsc"
+              class="text-dark bg-light rounded btn-outline-secondary"
+              >Date Asc</option
+            >
+            <option
+              value="dateDesc"
+              class="text-dark bg-light rounded btn-outline-secondary"
+              >Date Desc</option
+            >
           </select>
         </div>
 

@@ -7,51 +7,51 @@
 }
 
 .loader {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .error {
   color: #a94442;
   background: #f2dede;
-  border: 1px solid #ebcccc;
-  width: 180px;
-  height: 33px;
+  border: 0.0625rem solid #ebcccc;
+  width: 11.25rem;
+  height: 2.0625rem;
 }
 
 .error-input {
-  border: 1px solid #d9534f;
+  border: 0.0625rem solid #d9534f;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   color: #d9534f;
 }
 
 .error-msg {
-  font-size: 16px;
-  line-height: 24px;
-  width: 300px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  width: 18.75rem;
   color: #d9534f;
 }
 
 .number {
-  width: 86px;
-  height: 38px;
+  width: 5.375rem;
+  height: 2.375rem;
 }
 
 .sub {
-  width: 189px;
+  width: 11.8125rem;
 }
 
 .result {
-  margin-top: 160px;
+  margin-top: 10rem;
   width: 85%;
 }
 
 input.save-calc {
-  width: 14px;
+  width: 0.875rem;
 }
 
 .save-calc {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 body {
@@ -63,18 +63,18 @@ h1 {
   font-size: 4.5rem;
   line-height: 4.9375rem;
   margin-bottom: 3.125rem;
-  width: 672px;
-  height: 79px;
+  width: 42rem;
+  height: 4.9375rem;
 }
 
 h2 {
-  font-size: 54px;
-  line-height: 72px;
+  font-size: 3.375rem;
+  line-height: 4.5rem;
 }
 
 button {
   background-color: #0275d8 !important;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 input {
@@ -82,8 +82,13 @@ input {
 }
 
 select {
-  background: #e6e6e6;
-  border: 1px solid #cccccc;
+  width: 7.625rem;
+  background-color: #e6e6e6 !important;
+  border: 0.0625rem solid #cccccc !important;
   box-sizing: border-box;
-  border-radius: 4px;
+}
+
+option {
+  border: 1px solid #cccccc !important;
+  box-sizing: border-box;
 }
